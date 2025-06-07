@@ -229,7 +229,7 @@
         <div id="overlay-formulario" class="overlay-formulario">
             <div class="popup-formulario">
                 <div class="popup-header">
-                    <h3>ÚNETE AL <span class="txtRojo">RETO GORILLA</span></h3>
+                    <h3>ÚNETE AL <span class="txtwhithe">RETO GORILLA</span></h3>
                     <span class="cerrar-popup" onclick="cerrarFormulario()">&times;</span>
                 </div>
                 <div class="popup-contenido">
@@ -583,7 +583,7 @@
                 </div>
                 <div class="col">
                     <i class="material-icons-sharp"> phone </i>
-                    304 - 120 7676
+                    304 - 589 5681
                 </div>
                 <div class="col">
                     <i class="material-icons-sharp"> schedule </i>

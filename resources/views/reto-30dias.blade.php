@@ -422,7 +422,7 @@
                 <div id="nutricion-bajar" class="tab-content active">
                     <div class="plan-nutricion">
                         <div class="nutricion-img">
-                            <img src="img/resistencia.png" alt="Plan nutricional pérdida de peso">
+                            <img src="img/principios/bajarPeso.jpg" alt="Plan nutricional pérdida de peso">
                         </div>
                         <div class="nutricion-info">
                             <h3>PRINCIPIOS NUTRICIONALES PARA <span class="txtRojo">PÉRDIDA DE PESO</span></h3>
@@ -442,7 +442,7 @@
                 <div id="nutricion-aumentar" class="tab-content">
                     <div class="plan-nutricion">
                         <div class="nutricion-img">
-                            <img src="img/resistencia.png" alt="Plan nutricional ganancia muscular">
+                            <img src="img/principios/aumento.jpg" alt="Plan nutricional ganancia muscular">
                         </div>
                         <div class="nutricion-info">
                             <h3>PRINCIPIOS NUTRICIONALES PARA <span class="txtRojo">GANANCIA MUSCULAR</span></h3>
@@ -474,7 +474,7 @@
             <div class="testimonios-grid">
                 <div class="testimonio-card">
                     <div class="testimonio-img">
-                        <img src="img/resistencia.png" alt="Testimonio 1">
+                        <img src="img/resenas/carlos.jpg" alt="Testimonio 1">
                     </div>
                     <div class="testimonio-info">
                         <h3>CARLOS M.</h3>
@@ -485,7 +485,7 @@
                 
                 <div class="testimonio-card">
                     <div class="testimonio-img">
-                        <img src="img/resistencia.png" alt="Testimonio 2">
+                        <img src="img/resenas/laura.jpg" alt="Testimonio 2">
                     </div>
                     <div class="testimonio-info">
                         <h3>LAURA S.</h3>
@@ -496,7 +496,7 @@
                 
                 <div class="testimonio-card">
                     <div class="testimonio-img">
-                        <img src="img/resistencia.png" alt="Testimonio 3">
+                        <img src="img/resenas/miguel.jpg" alt="Testimonio 3">
                     </div>
                     <div class="testimonio-info">
                         <h3>MIGUEL A.</h3>
@@ -517,11 +517,11 @@
                 <div class="soporte-contacto">
                     <div class="contacto-item">
                         <i class="material-icons-sharp">phone</i>
-                        <p>304 - 120 7676</p>
+                        <p>304 - 589 5681</p>
                     </div>
                     <div class="contacto-item">
                         <i class="material-icons-sharp">email</i>
-                        <p>soporte@gorillateam.com</p>
+                        <p>gorillateam.global@gmail.com</p>
                     </div>
                     <div class="contacto-item">
                         <i class="material-icons-sharp">chat</i>
