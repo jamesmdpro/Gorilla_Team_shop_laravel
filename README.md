@@ -1,61 +1,225 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🦍 Shop Gorilla - Tienda de Suplementos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Una moderna tienda online especializada en suplementos deportivos y nutricionales, construida con tecnologías web modernas y Cart.js para una experiencia de compra fluida.
 
-## About Laravel
+## 🚀 Características
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Catálogo de Productos**: Amplia gama de suplementos organizados por categorías
+- **Carrito de Compras**: Integración con Cart.js para gestión dinámica del carrito
+- **Búsqueda Avanzada**: Filtros por categoría, precio, marca y más
+- **Responsive Design**: Optimizado para dispositivos móviles y desktop
+- **Gestión de Inventario**: Control en tiempo real del stock disponible
+- **Proceso de Checkout**: Flujo de compra simplificado y seguro
+- **Panel de Administración**: Gestión de productos, pedidos y usuarios
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tecnologías Utilizadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Carrito**: Cart.js para gestión del carrito de compras
+- **Backend**: Laravel (PHP)
+- **Base de Datos**: MySQL
+- **Estilos**: CSS personalizado con diseño responsive
+- **Control de Versiones**: Git
 
-## Learning Laravel
+## 📦 Instalación
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerrequisitos
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP >= 8.1
+- Composer
+- Node.js >= 16.x
+- MySQL >= 5.7
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Pasos de Instalación
 
-## Laravel Sponsors
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/tu-usuario/shop-gorilla.git
+   cd shop-gorilla
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Instalar dependencias de PHP**
+   ```bash
+   composer install
+   ```
 
-### Premium Partners
+3. **Configurar variables de entorno**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4. **Configurar base de datos**
+   - Edita el archivo `.env` con tus credenciales de base de datos:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=shop_gorilla
+   DB_USERNAME=tu_usuario
+   DB_PASSWORD=tu_contraseña
+   ```
 
-## Contributing
+5. **Ejecutar migraciones**
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Sembrar datos de prueba (opcional)**
+   ```bash
+   php artisan db:seed
+   ```
 
-## Code of Conduct
+7. **Iniciar el servidor de desarrollo**
+   ```bash
+   php artisan serve
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+La aplicación estará disponible en `http://localhost:8000`
 
-## Security Vulnerabilities
+## 🛒 Configuración de Cart.js
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Cart.js está integrado para manejar todas las operaciones del carrito de compras:
 
-## License
+### Inicialización
+```javascript
+// Inicializar Cart.js
+Cart.init({
+  currency: 'EUR',
+  submitTo: '/cart/add',
+  dataAPI: true,
+  debug: false
+});
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Agregar Productos
+```javascript
+// Agregar producto al carrito
+Cart.addItem(productId, {
+  quantity: 1,
+  properties: {
+    name: 'Proteína Whey',
+    price: 29.99,
+    image: 'producto.jpg'
+  }
+});
+```
+
+### Eventos del Carrito
+```javascript
+// Escuchar cambios en el carrito
+document.addEventListener('cart.requestComplete', function(event) {
+  console.log('Carrito actualizado:', Cart.getCart());
+  updateCartUI();
+});
+```
+
+## 📁 Estructura del Proyecto
+
+```
+Shop_gorilla/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   └── Middleware/
+│   ├── Models/
+│   └── Providers/
+├── bootstrap/
+├── config/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── public/
+│   ├── css/
+│   ├── js/
+│   │   └── cart.js
+│   └── images/
+├── resources/
+│   ├── views/
+│   └── sass/
+├── routes/
+└── storage/
+```
+
+## 🎯 Funcionalidades Principales
+
+### Gestión de Productos
+- Crear, editar y eliminar productos
+- Categorización por tipo de suplemento
+- Gestión de imágenes y descripciones
+- Control de stock y precios
+
+### Carrito de Compras
+- Agregar/quitar productos dinámicamente
+- Actualización automática de totales
+- Persistencia del carrito en sesión
+- Validación de stock disponible
+
+### Proceso de Compra
+- Formulario de datos del cliente
+- Cálculo de envío
+- Integración con pasarelas de pago
+- Confirmación por email
+
+## 🔧 Configuración Adicional
+
+### Variables de Entorno Importantes
+
+```env
+# Configuración de la aplicación
+APP_NAME="Shop Gorilla"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost
+
+# Configuración de correo
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+
+# Configuración de pagos (ejemplo)
+STRIPE_KEY=your-stripe-key
+STRIPE_SECRET=your-stripe-secret
+```
+
+## 🚀 Despliegue
+
+### Producción
+
+1. **Configurar servidor web** (Apache/Nginx)
+2. **Optimizar aplicación**
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+3. **Configurar SSL** para transacciones seguras
+4. **Configurar backups** de base de datos
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 📞 Contacto
+
+- **Desarrollador**: Tu Nombre
+- **Email**: tu-email@ejemplo.com
+- **Proyecto**: [https://github.com/tu-usuario/shop-gorilla](https://github.com/tu-usuario/shop-gorilla)
+
+## 🙏 Agradecimientos
+
+- [Cart.js](https://cartjs.org/) por la excelente librería de carrito
+- [Laravel](https://laravel.com/) por el framework backend
+- Comunidad de desarrolladores por el feedback y contribuciones
+
+---
+
+⭐ ¡No olvides dar una estrella al proyecto si te ha sido útil!
