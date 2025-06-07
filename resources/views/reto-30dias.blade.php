@@ -454,7 +454,7 @@
                                 <li><i class="material-icons-sharp">restaurant</i> <strong>Hidratación:</strong> Mínimo 3-4 litros de agua diarios</li>
                                 <li><i class="material-icons-sharp">restaurant</i> <strong>Timing nutricional:</strong> 5-6 comidas distribuidas durante el día</li>
                             </ul>
-                            <button class="btn-plan" onclick="descargarPlan('aumentar')">DESCARGAR PLAN COMPLETO</button>
+                            {{-- <button class="btn-plan" onclick="descargarPlan('aumentar')">DESCARGAR PLAN COMPLETO</button> --}}
                         </div>
                     </div>
                 </div>
