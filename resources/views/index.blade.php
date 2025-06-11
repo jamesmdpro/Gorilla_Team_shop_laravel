@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}" type="image/png">
+    <!-- Favicon mejorado para múltiples dispositivos -->
+    <link rel="icon" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}" type="image/png" sizes="32x32">
+    <link rel="icon" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}" type="image/png" sizes="48x48">
+    <link rel="icon" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}" type="image/png" sizes="96x96">
+    <link rel="apple-touch-icon" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}">
+    <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('img/LOGO_GORILLA_TEAM.png') }}">
+    <meta name="msapplication-TileColor" content="#ff1133">
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;600;800&display=swap" rel="stylesheet">
     <!-- Incluir CSS desde la carpeta resources/css -->
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
@@ -396,87 +405,94 @@
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto1.jpg" alt="Producto 1" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto2.jpg" alt="Producto 2" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto3.jpg" alt="Producto 3" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto4.jpg" alt="Producto 4" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto5.jpg" alt="Producto 5" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto6.jpg" alt="Producto 6" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto7.jpg" alt="Producto 7" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto8.jpg" alt="Producto 8" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto9.jpg" alt="Producto 9" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto10.jpg" alt="Producto 10" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto11.jpg" alt="Producto 11" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto12.jpg" alt="Producto 12" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto13.jpg" alt="Producto 13" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <!-- Duplicar las primeras 3 imágenes para el efecto infinito -->
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto1.jpg" alt="Producto 1" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto2.jpg" alt="Producto 2" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="/reto-30dias.html#productos" class="carousel-link">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
                             <img src="img/Productos/producto3.jpg" alt="Producto 3" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                 </div>
+            </div>
+            <!-- Botón para ir a productos -->
+            <div class="galeria-productos-btn">
+                <a href="{{ route('reto-30dias') }}#productos" class="btn-productos">
+                    <i class="material-icons-sharp">shopping_bag</i>
+                    Ver Todos los Productos
+                </a>
             </div>
         </div>
     </section>
@@ -596,7 +612,7 @@
 
     <footer>
         <div class="info">
-            <p>2023 - <span class="txtRojo">ONE DMENTE</span> Todos los derechos reservados</p>
+            <p>2025 - <span class="txtRojo">ONE DMENTE</span> Todos los derechos reservados</p>
             <div class="redes">
                 <a href="https://www.facebook.com/GorillaMasters"><i class="material-icons-sharp">facebook</i></a>
                 
@@ -657,6 +673,29 @@
                     }, 500); // Redirigir después de medio segundo
                 });
             });
+
+            // Funcionalidad mejorada para el botón flotante
+            const floatingBtn = document.querySelector('.floating-products-btn');
+            const galeriaSection = document.querySelector('#galeria');
+            
+            // Función para verificar si el usuario está en la sección de galería
+            function checkGaleriaVisibility() {
+                if (galeriaSection && floatingBtn) {
+                    const rect = galeriaSection.getBoundingClientRect();
+                    const isGaleriaVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                    
+                    // Reducir la opacidad del botón flotante cuando la galería esté visible
+                    if (isGaleriaVisible) {
+                        floatingBtn.style.opacity = '0.6';
+                    } else {
+                        floatingBtn.style.opacity = '1';
+                    }
+                }
+            }
+
+            // Verificar visibilidad al hacer scroll
+            window.addEventListener('scroll', checkGaleriaVisibility);
+            checkGaleriaVisibility(); // Verificar al cargar la página
         });
 
         // Funciones para el formulario de inscripción
@@ -731,5 +770,12 @@
             }
         });
     </script>
+    
+    <!-- Botón flotante para ver productos -->
+    <div class="floating-products-btn">
+        <a href="{{ route('reto-30dias') }}#productos" class="btn-floating" title="Ver Productos">
+            <i class="material-icons-sharp">shopping_bag</i>
+        </a>
+    </div>
 </body>
 </html>

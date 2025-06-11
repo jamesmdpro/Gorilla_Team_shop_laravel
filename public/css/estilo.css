@@ -188,7 +188,7 @@ body{
     width: 50%;
 }
 .nosotros .fila .col img{
-    width: 70%;
+    width: 58%;
     height: 300px;
     object-fit: cover;
     display: block;
@@ -1296,4 +1296,169 @@ footer .info a{
 
 .btn-producto:hover {
     background-color: #cc0000;
+}
+
+/* Estilos para el botón de la galería */
+.galeria-productos-btn {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+.btn-productos {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    border: 2px solid transparent;
+}
+
+.btn-productos:hover {
+    background: linear-gradient(45deg, #cc0000, #990000);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    border-color: #ff0000;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-productos i {
+    font-size: 20px;
+}
+
+/* Estilos para el botón flotante */
+.floating-products-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    animation: float 3s ease-in-out infinite;
+}
+
+.btn-floating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.btn-floating::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 2s infinite;
+    opacity: 0.7;
+}
+
+.btn-floating:hover {
+    background: linear-gradient(45deg, #cc0000, #990000);
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(255, 0, 0, 0.6);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-floating:hover::before {
+    animation-play-state: paused;
+}
+
+.btn-floating i {
+    font-size: 24px;
+}
+
+/* Animación de flotación */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Responsive para el botón flotante */
+@media (max-width: 768px) {
+    .floating-products-btn {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .btn-floating {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .btn-floating i {
+        font-size: 20px;
+    }
+}
+
+/* Asegurar que el botón flotante no interfiera con otros elementos */
+.floating-products-btn {
+    pointer-events: auto;
+}
+
+.floating-products-btn * {
+    pointer-events: auto;
+}
+
+/* Ocultar el botón flotante cuando se esté en la sección de galería para evitar redundancia */
+@media (max-height: 600px) {
+    .floating-products-btn {
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* Responsive para el botón de la galería */
+@media (max-width: 768px) {
+    .btn-productos {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    .btn-productos i {
+        font-size: 18px;
+    }
 }
