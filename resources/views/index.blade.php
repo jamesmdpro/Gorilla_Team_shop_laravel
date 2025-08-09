@@ -554,6 +554,13 @@
         </div>
     </footer>
 
+    <!-- Botón flotante para productos -->
+    <div class="floating-products-btn">
+        <a href="https://gorillateam.top/reto-30dias#productos" class="btn-floating" title="Ver Productos">
+            <i class="material-icons-sharp">shopping_bag</i>
+        </a>
+    </div>
+
 @endsection
 
 @push('scripts')
