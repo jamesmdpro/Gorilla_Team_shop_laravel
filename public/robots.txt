@@ -1,2 +1,20 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /tests/
+
+# Allow important directories
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /images/
+
+# Sitemap location
+Sitemap: {{ url('/sitemap.xml') }}
