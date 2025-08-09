@@ -1,21 +1,45 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('img/LOGO_GORILLA_TEAM.png') }}" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;600;800&display=swap" rel="stylesheet">
-    <!-- Incluir CSS desde la carpeta resources/css -->
-    <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/popup-styles.css') }}">
-    <!-- Incluir Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <title>GORILLA TEAM</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'GORILLA TEAM - Suplementos Deportivos | Conquista Tu Destino S.O.S.')
+@section('description', 'Emergencia inminente: Fuerzas invisibles trabajan para mantenerte débil. Descubre los suplementos deportivos GORILLA TEAM y rompe las cadenas. ¡La resistencia comienza ahora!')
+@section('keywords', 'suplementos deportivos, proteína whey, creatina, pre-entreno, BCAA, fitness, musculación, resistencia, gorilla team, suplementos colombia, conquista tu destino')
+
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "GORILLA TEAM",
+    "url": "{{ url('/') }}",
+    "description": "Tienda especializada en suplementos deportivos de alta calidad",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ url('/') }}?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "GORILLA TEAM",
+    "description": "Tienda especializada en suplementos deportivos para atletas y entusiastas del fitness",
+    "url": "{{ url('/') }}",
+    "logo": "{{ asset('img/LOGO_GORILLA_TEAM.png') }}",
+    "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CO"
+    },
+    "openingHours": "Mo-Su 00:00-23:59",
+    "paymentAccepted": "Cash, Credit Card",
+    "priceRange": "$$"
+}
+</script>
+@endpush
+
+@section('content')
     <div class="container_error">
         @if ($errors->any())
             <div class="modal fade show" id="errorModal" tabindex="-1" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
@@ -40,37 +64,36 @@
         @endif
     
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
         @endif
     </div>
+    
     <!-- MENU -->
     <div class="contenedor-header">
         <header>
             <h1>GORILLA <span class="txtRojo">TEAM</span></h1>
-            <nav id="nav">
-                <a href="#inicio" onclick="seleccionar()">inicio</a>
-                <a href="#nosotros" onclick="seleccionar()">Resistencia</a>
-                <a href="#servicios" onclick="seleccionar()">Desafíos</a>
-                <a href="#comodidades" onclick="seleccionar()">S.O.S.</a>
-                <a href="#galeria" onclick="seleccionar()">Galería</a>
-                <a href="#equipo" onclick="seleccionar()">Equipo</a>
-                <a href="#contacto" onclick="seleccionar()">Contacto</a>
+            <nav id="nav" role="navigation" aria-label="Navegación principal">
+                <a href="#inicio" onclick="seleccionar()" aria-label="Ir a inicio">inicio</a>
+                <a href="#nosotros" onclick="seleccionar()" aria-label="Conoce nuestra resistencia">Resistencia</a>
+                <a href="#servicios" onclick="seleccionar()" aria-label="Ver nuestros desafíos">Desafíos</a>
+                <a href="#comodidades" onclick="seleccionar()" aria-label="Mensaje S.O.S.">S.O.S.</a>
+                <a href="#galeria" onclick="seleccionar()" aria-label="Ver galería">Galería</a>
+                <a href="#equipo" onclick="seleccionar()" aria-label="Conoce nuestro equipo">Equipo</a>
+                <a href="#contacto" onclick="seleccionar()" aria-label="Contactar con nosotros">Contacto</a>
             </nav>
             <div class="redes">
-                <a href="#" id="cart-icon"><i class="material-icons-sharp">shopping_cart</i><span id="cart-count">0</span></a>
-                <a href="https://www.facebook.com/GorillaMasters"><i class="material-icons-sharp">facebook</i></a>
-
-
+                <a href="#" id="cart-icon" aria-label="Ver carrito de compras"><i class="material-icons-sharp">shopping_cart</i><span id="cart-count">0</span></a>
+                <a href="https://www.facebook.com/GorillaMasters" aria-label="Síguenos en Facebook" target="_blank" rel="noopener"><i class="material-icons-sharp">facebook</i></a>
             </div>
             
             <!-- Shopping Cart Popup -->
-            <div id="cart-popup" class="popup-overlay">
+            <div id="cart-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="cart-popup-title">
                 <div class="popup-content">
                     <div class="popup-header">
-                        <h3>Carrito de Compras</h3>
-                        <span class="close-popup">&times;</span>
+                        <h3 id="cart-popup-title">Carrito de Compras</h3>
+                        <span class="close-popup" aria-label="Cerrar carrito">&times;</span>
                     </div>
                     <div id="cart-items" class="cart-items">
                         <!-- Cart items will be added here dynamically -->
@@ -84,11 +107,11 @@
             </div>
 
             <!-- Product Details Popup -->
-            <div id="product-details-popup" class="popup-overlay">
+            <div id="product-details-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="product-details-title">
                 <div class="popup-content">
                     <div class="popup-header">
-                        <h3>Detalles del Producto</h3>
-                        <span class="close-popup">&times;</span>
+                        <h3 id="product-details-title">Detalles del Producto</h3>
+                        <span class="close-popup" aria-label="Cerrar detalles del producto">&times;</span>
                     </div>
                     <div id="product-details-content" class="product-details-content">
                         <!-- Product details will be loaded here dynamically -->
@@ -97,34 +120,34 @@
             </div>
 
             <!-- Checkout Form Popup -->
-            <div id="checkout-popup" class="popup-overlay" style="margin-top: 100px;">
+            <div id="checkout-popup" class="popup-overlay" style="margin-top: 100px;" role="dialog" aria-modal="true" aria-labelledby="checkout-popup-title">
                 <div class="popup-content">
                     <div class="popup-header">
-                        <h3>Finalizar Compra</h3>
-                        <span class="close-popup">&times;</span>
+                        <h3 id="checkout-popup-title">Finalizar Compra</h3>
+                        <span class="close-popup" aria-label="Cerrar formulario de compra">&times;</span>
                     </div>
                     <div class="checkout-form">
                         <p class="shipping-notice">¡Envío nacional gratis! Pago contra entrega.</p>
-                        <form id="checkout-form">
+                        <form id="checkout-form" aria-label="Formulario para finalizar compra">
                             <div class="form-group">
                                 <label for="checkout-name">Nombre completo</label>
-                                <input type="text" id="checkout-name" name="name" required>
+                                <input type="text" id="checkout-name" name="name" required aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="checkout-phone">Teléfono</label>
-                                <input type="tel" id="checkout-phone" name="phone" required>
+                                <input type="tel" id="checkout-phone" name="phone" required aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="checkout-email">Correo electrónico</label>
-                                <input type="email" id="checkout-email" name="email" required>
+                                <input type="email" id="checkout-email" name="email" required aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="checkout-address">Dirección de envío</label>
-                                <input type="text" id="checkout-address" name="address" required>
+                                <input type="text" id="checkout-address" name="address" required aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="checkout-city">Ciudad</label>
-                                <input type="text" id="checkout-city" name="city" required>
+                                <input type="text" id="checkout-city" name="city" required aria-required="true">
                             </div>
                             <button type="submit" class="btn-submit">Confirmar Pedido</button>
                         </form>
@@ -132,21 +155,21 @@
                 </div>
             </div>
             <!-- Icono del menu responsive -->
-            <div id="icono-nav" class="nav-responsive" onclick="mostrarOcultarMenu()">
+            <button id="icono-nav" class="nav-responsive" onclick="mostrarOcultarMenu()" aria-label="Mostrar o ocultar menú">
                 <i class="fa-solid fa-bars"></i>
-            </div>                
+            </button>                
         </header>
     </div>
 
     <!-- SECCION INICIO -->
-    <section id="inicio" class="inicio">
+    <section id="inicio" class="inicio" role="region" aria-labelledby="inicio-title">
         <div class="contenido-seccion">
             <div class="info">
-                <h2>LA CUENTA REGRESIVA HA <span class="txtRojo">COMENZADO</span></h2>
+                <h1 id="inicio-title">LA CUENTA REGRESIVA HA <span class="txtRojo">COMENZADO</span></h1>
                 <p>¿Estás preparado para descubrir el secreto que se oculta detrás?</p>
                 
                 <!-- Contador de tiempo hasta 30/03/2025 -->
-                <div id="countdown" class="countdown">
+                <div id="countdown" class="countdown" role="timer" aria-live="polite" aria-atomic="true" aria-label="Contador regresivo hasta 30 de marzo de 2025">
                     <div class="time-container">
                         <div id="days" class="time">00</div>
                         <span>Días</span>
@@ -164,28 +187,24 @@
                         <span>Segundos</span>
                     </div>
                 </div>
-                
-                <!-- <a href="#nosotros" class="btn-mas">
-                    <i class="material-icons-sharp"> rocket_launch </i>
-                </a> -->
             </div>
-            <div class="opciones">
-                <div class="opcion">
+            <div class="opciones" role="list" aria-label="Categorías de entusiastas">
+                <div class="opcion" role="listitem">
                     ENTUSIASTAS
                 </div>
-                <div class="opcion">
+                <div class="opcion" role="listitem">
                     CROSSFITTER
                 </div>
-                <div class="opcion">
+                <div class="opcion" role="listitem">
                     MILITARY
                 </div>
-                <div class="opcion">
+                <div class="opcion" role="listitem">
                     ATHLETES
                 </div>
-                <div class="opcion">
+                <div class="opcion" role="listitem">
                     PROFESIONALES
                 </div>
-                <div class="opcion">
+                <div class="opcion" role="listitem">
                     FIGHTERS
                 </div>
             </div>
@@ -193,107 +212,102 @@
     </section>
 
     <!-- SECCION NOSOTROS -->
-    <section id="nosotros" class="nosotros">
-        <div class="fila">
-            <div class="col">
-                <img src="img/resistencia_1.png" alt="">
-            </div>
-            <div class="col">
-                <div class="contenedor-titulo">
-                    <div class="numero">
-                        01
-                    </div>
-                    <div class="info">
-                        <span class="frase">POTENCIA TU EVOLUCIÓN</span>
-                        <h2>LA RESISTENCIA COMIENZA AQUÍ</h2>
-                    </div>
+    <section id="nosotros" class="nosotros" role="region" aria-labelledby="nosotros-title">
+        <div class="contenido-seccion">
+            <div class="fila">
+                <div class="col">
+                    <img src="img/resistencia_1.png" alt="Imagen representativa de la resistencia GORILLA TEAM">
                 </div>
-                <p class="p-especial">¡Descubre las herramientas que transformarán tu cuerpo y mente con GORILLA <span class="txtRojo">TEAM</span>!</p>
-                <p>"La verdadera resistencia no se trata solo de luchar, sino de evolucionar. GORILLA <span class="txtRojo">TEAM</span> no es solo un desafío, es un movimiento. Nuestra línea de productos está diseñada para llevar tu rendimiento al siguiente nivel: suplementos, equipo deportivo y tecnología avanzada para optimizar tu fuerza y resistencia. Es hora de desbloquear tu máximo potencial y desafiar tus propios límites. Únete a la resistencia, equípate con lo mejor y transforma tu vida. ¡El cambio comienza hoy!"</p>
-            </div>           
-        </div>
-        <hr>
-        <div class="fila-nosotros">
-            <div class="col1">
-                <span class="frase">
-                    <span class="txtRojo">DESAFÍO</span> SUPREMO
-                </span>
-                <h2>ÚNETE <span class="txtRojo">ACEPTA</span> EL RETO!</h2>
+                <div class="col">
+                    <div class="contenedor-titulo">
+                        <div class="numero">
+                            01
+                        </div>
+                        <div class="info">
+                            <span class="frase">POTENCIA TU EVOLUCIÓN</span>
+                            <h2 id="nosotros-title">LA RESISTENCIA COMIENZA AQUÍ</h2>
+                        </div>
+                    </div>
+                    <p class="p-especial">¡Descubre las herramientas que transformarán tu cuerpo y mente con GORILLA <span class="txtRojo">TEAM</span>!</p>
+                    <p>"La verdadera resistencia no se trata solo de luchar, sino de evolucionar. GORILLA <span class="txtRojo">TEAM</span> no es solo un desafío, es un movimiento. Nuestra línea de productos está diseñada para llevar tu rendimiento al siguiente nivel: suplementos, equipo deportivo y tecnología avanzada para optimizar tu fuerza y resistencia. Es hora de desbloquear tu máximo potencial y desafiar tus propios límites. Únete a la resistencia, equípate con lo mejor y transforma tu vida. ¡El cambio comienza hoy!"</p>
+                </div>           
             </div>
-            <div class="col2">
-                <button id="btn-inscripcion" onclick="abrirFormulario()">INSCRIBETE YA</button>
-            </div>
-        </div>
-        
-        <!-- Formulario Pop-up -->
-        <div id="overlay-formulario" class="overlay-formulario">
-            <div class="popup-formulario">
-                <div class="popup-header">
-                    <h3>ÚNETE AL <span class="txtwhithe">RETO GORILLA</span></h3>
-                    <span class="cerrar-popup" onclick="cerrarFormulario()">&times;</span>
+            <hr>
+            <div class="fila-nosotros">
+                <div class="col1">
+                    <span class="frase">
+                        <span class="txtRojo">DESAFÍO</span> SUPREMO
+                    </span>
+                    <h3>ÚNETE <span class="txtRojo">ACEPTA</span> EL RETO!</h3>
                 </div>
-                <div class="popup-contenido">
-                    <form id="formulario-inscripcion" action="{{ route('submit-reto') }}" method="POST">
-                        @csrf
-                        <div class="form-grupo">
-                            <label for="nombre">Nombre y Apellidos</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="correo">Correo Electrónico</label>
-                            <input type="email" id="correo" name="correo" required>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" required>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="ciudad">Ciudad</label>
-                            <input type="text" id="ciudad" name="ciudad" required>
-                        </div>
-                        <div class="form-grupo form-fila">
-                            <div class="form-col">
-                                <label for="altura">Altura (cm)</label>
-                                <input type="number" id="altura" name="altura" min="100" max="250" required>
+                <div class="col2">
+                    <button id="btn-inscripcion" onclick="abrirFormulario()" aria-label="Inscribirse al reto GORILLA">INSCRIBETE YA</button>
+                </div>
+            </div>
+            
+            <!-- Formulario Pop-up -->
+            <div id="overlay-formulario" class="overlay-formulario" role="dialog" aria-modal="true" aria-labelledby="formulario-title">
+                <div class="popup-formulario">
+                    <div class="popup-header">
+                        <h3 id="formulario-title">ÚNETE AL <span class="txtwhithe">RETO GORILLA</span></h3>
+                        <span class="cerrar-popup" onclick="cerrarFormulario()" aria-label="Cerrar formulario">&times;</span>
+                    </div>
+                    <div class="popup-contenido">
+                        <form id="formulario-inscripcion" action="{{ route('submit-reto') }}" method="POST" aria-label="Formulario de inscripción al reto">
+                            @csrf
+                            <div class="form-grupo">
+                                <label for="nombre">Nombre y Apellidos</label>
+                                <input type="text" id="nombre" name="nombre" required aria-required="true">
                             </div>
-                            <div class="form-col">
-                                <label for="peso">Peso (kg)</label>
-                                <input type="number" id="peso" name="peso" min="30" max="200" required>
+                            <div class="form-grupo">
+                                <label for="correo">Correo Electrónico</label>
+                                <input type="email" id="correo" name="correo" required aria-required="true">
                             </div>
-                        </div>
-                        <div class="form-grupo">
-                            <label for="objetivo">Objetivo Principal</label>
-                            <select id="objetivo" name="objetivo" required>
-                                <option value="">Selecciona tu objetivo</option>
-                                <option value="bajar_peso">Bajar de peso</option>
-                                <option value="aumentar_masa">Aumentar masa muscular</option>
-                                {{-- <option value="definicion">Definición muscular</option>
-                                <option value="fuerza">Aumentar fuerza</option>
-                                <option value="resistencia">Mejorar resistencia</option>
-                                <option value="flexibilidad">Mejorar flexibilidad</option>
-                                <option value="salud">Mejorar salud general</option>
-                                <option value="rendimiento">Mejorar rendimiento deportivo</option>
-                                <option value="recuperacion">Recuperación de lesión</option>
-                                <option value="habitos">Crear hábitos saludables</option> --}}
-                            </select>
-                        </div>
-                        <div class="form-grupo checkbox-grupo">
-                            <input type="checkbox" id="terminos" name="terminos" required>
-                            <label for="terminos">Acepto los términos y condiciones</label>
-                        </div>
-                        <div class="form-grupo checkbox-grupo">
-                            <input type="checkbox" id="comunicaciones" name="comunicaciones" checked>
-                            <label for="comunicaciones">Acepto recibir información vía correo, SMS o WhatsApp</label>
-                        </div>
-                        <button type="submit" class="btn-enviar">UNIRME AL RETO</button>
-                    </form>
+                            <div class="form-grupo">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" required aria-required="true">
+                            </div>
+                            <div class="form-grupo">
+                                <label for="ciudad">Ciudad</label>
+                                <input type="text" id="ciudad" name="ciudad" required aria-required="true">
+                            </div>
+                            <div class="form-grupo form-fila">
+                                <div class="form-col">
+                                    <label for="altura">Altura (cm)</label>
+                                    <input type="number" id="altura" name="altura" min="100" max="250" required aria-required="true">
+                                </div>
+                                <div class="form-col">
+                                    <label for="peso">Peso (kg)</label>
+                                    <input type="number" id="peso" name="peso" min="30" max="200" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="objetivo">Objetivo Principal</label>
+                                <select id="objetivo" name="objetivo" required aria-required="true">
+                                    <option value="">Selecciona tu objetivo</option>
+                                    <option value="bajar_peso">Bajar de peso</option>
+                                    <option value="aumentar_masa">Aumentar masa muscular</option>
+                                </select>
+                            </div>
+                            <div class="form-grupo checkbox-grupo">
+                                <input type="checkbox" id="terminos" name="terminos" required aria-required="true">
+                                <label for="terminos">Acepto los términos y condiciones</label>
+                            </div>
+                            <div class="form-grupo checkbox-grupo">
+                                <input type="checkbox" id="comunicaciones" name="comunicaciones" checked>
+                                <label for="comunicaciones">Acepto recibir información vía correo, SMS o WhatsApp</label>
+                            </div>
+                            <button type="submit" class="btn-enviar">UNIRME AL RETO</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <hr>
+    
     <!-- SECCION SERVICIOS -->
-    <section class="servicios" id="servicios">
+    <section class="servicios" id="servicios" role="region" aria-labelledby="servicios-title">
         <div class="contenido-seccion">
             <div class="fila">
                 <div class="col">
@@ -303,49 +317,49 @@
                         </div>
                         <div class="info">
                             <span class="frase">SUPERA, INSPIRA, LIDERA</span>
-                            <h2>DESAFIOS</h2>
+                            <h2 id="servicios-title">DESAFIOS</h2>
                         </div>
                     </div>
                     <p class="p-especial">Acepta el reto, despierta tu máximo potencial</p>
                     <p>El verdadero cambio comienza con una decisión. Únete a <span class="txtRojo">TEAM GORILLA</span> y da el primer paso hacia una nueva versión de ti. Nuestra misión es desafiarte a evolucionar con los productos diseñados para potenciar tu fuerza, resistencia y mentalidad. No es solo un desafío, es un compromiso contigo mismo. Atrévete a cambiar, a entrenar con propósito y a formar parte de una comunidad que transforma hábitos en poder. ¡La resistencia empieza contigo!</p>
                 </div>
                 <div class="col">
-                    <img src="img/servicios.png" alt="">
+                    <img src="img/servicios.png" alt="Servicios y desafíos GORILLA TEAM">
                 </div>
             </div>
         </div>
         <div class="info-servicios">
-            <table>
+            <table role="table" aria-label="Servicios y características de GORILLA TEAM">
                 <tr>
                     <td>
-                        <i class="material-icons-sharp">rocket_launch</i>
+                        <i class="material-icons-sharp" aria-hidden="true">rocket_launch</i>
                         <h3><span class="txtRojo">Innovación </span> y rendimiento</h3>
                         <p>Descubre la nueva generación de productos de <span class="txtRojo">TEAM GORILLA</span>, diseñados para potenciar tu fuerza, resistencia y recuperación.</p>
                     </td>
                     <td>
-                        <i class="material-icons-sharp">psychology</i>
+                        <i class="material-icons-sharp" aria-hidden="true">psychology</i>
                         <h3><span class="txtRojo">Mentalidad </span> de acero</h3>
                         <p>La resistencia comienza en la mente. Aprende hábitos, estrategias y entrenamientos que te llevarán al siguiente nivel.</p>
                     </td>
                     <td>
-                        <i class="material-icons-sharp">history_edu</i>
+                        <i class="material-icons-sharp" aria-hidden="true">history_edu</i>
                         <h3><span class="txtRojo">Historia </span> en construcción</h3>
                         <p>La batalla por la evolución ha comenzado. Mientras la carrera se acerca, prepárate con las herramientas adecuadas.</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="material-icons-sharp">trending_up</i>
+                        <i class="material-icons-sharp" aria-hidden="true">trending_up</i>
                         <h3><span class="txtRojo">Supera </span> tus límites</h3>
                         <p>Con cada entrenamiento y cada elección, te acercas a la mejor versión de ti. Únete a la resistencia con <span class="txtRojo">TEAM GORILLA</span>.</p>
                     </td>
                     <td>
-                        <i class="material-icons-sharp">diversity_3</i>
+                        <i class="material-icons-sharp" aria-hidden="true">diversity_3</i>
                         <h3><span class="txtRojo">Comunidad </span> imparable</h3>
                         <p>No estás solo en este viaje. Conéctate con otros que comparten tu visión y crecen contigo.</p>
                     </td>
                     <td>
-                        <i class="material-icons-sharp">auto_awesome</i>
+                        <i class="material-icons-sharp" aria-hidden="true">auto_awesome</i>
                         <h3><span class="txtRojo">Transformación </span> real</h3>
                         <p>Esto no es solo un desafío, es un cambio de vida. La resistencia no usa armas, usa disciplina, constancia y los mejores productos.</p>
                     </td>
@@ -354,11 +368,11 @@
         </div>
     </section>
 
-    <!-- SECCION COMODIDADES -->
-    <section id="comodidades" class="comodidades">
+    <!-- SECCION COMODIDADES (S.O.S.) -->
+    <section id="comodidades" class="comodidades" role="region" aria-labelledby="sos-title">
         <div class="fila">
             <div class="col">
-                <img src="img/s.o.s.jpg" alt="">
+                <img src="img/s.o.s.jpg" alt="Mensaje S.O.S. - Conquista tu destino">
             </div>
             <div class="col">
                 <div class="contenedor-titulo">
@@ -367,21 +381,21 @@
                     </div>
                     <div class="info">
                         <span class="frase">CONQUISTA TU DESTINO</span>
-                        <h2>S.O.S.</h2>
+                        <h2 id="sos-title">S.O.S.</h2>
                     </div>
                 </div>
                 <p class="p-especial">¡Emergencia inminente! Fuerzas invisibles trabajan para mantenerte débil. Es momento de despertar.</p>
-                <ul>
-                    <li><span>ALERTA</span> - Un mensaje oculto ha sido interceptado. Algo o alguien no quiere que descubras tu verdadero potencial. Prepárate para romper las cadenas.</li>
-                    <li><span>LA OPORTUNIDAD</span> - de cambiar tu destino está más cerca de lo que crees. Cada elección cuenta, cada esfuerzo te acerca a la verdadera resistencia.</li>
-                    <li><span>¿Estás listo para aceptar el desafío?</span> - No permitas que controlen tu destino. La hora de actuar es ahora.</li>
+                <ul role="list">
+                    <li role="listitem"><span>ALERTA</span> - Un mensaje oculto ha sido interceptado. Algo o alguien no quiere que descubras tu verdadero potencial. Prepárate para romper las cadenas.</li>
+                    <li role="listitem"><span>LA OPORTUNIDAD</span> - de cambiar tu destino está más cerca de lo que crees. Cada elección cuenta, cada esfuerzo te acerca a la verdadera resistencia.</li>
+                    <li role="listitem"><span>¿Estás listo para aceptar el desafío?</span> - No permitas que controlen tu destino. La hora de actuar es ahora.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- SECCION GALERIA -->
-    <section class="galeria" id="galeria">
+    <section class="galeria" id="galeria" role="region" aria-labelledby="galeria-title">
         <div class="contenido-seccion">
             <div class="contenedor-titulo">
                 <div class="numero">
@@ -389,94 +403,55 @@
                 </div>
                 <div class="info">
                     <span class="frase">LA MEJOR EXPERIENCIA</span>
-                    <h2>GALERIA</h2>
+                    <h2 id="galeria-title">GALERIA</h2>
                 </div>
             </div>
             <!-- Carrusel de productos -->
-            <div class="carousel-container">
+            <div class="carousel-container" role="region" aria-label="Carrusel de productos">
                 <div class="carousel-track">
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto1.jpg" alt="Producto 1" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 1">
+                            <img src="img/Productos/producto1.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 1" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto2.jpg" alt="Producto 2" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 2">
+                            <img src="img/Productos/producto2.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 2" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto3.jpg" alt="Producto 3" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 3">
+                            <img src="img/Productos/producto3.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 3" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto4.jpg" alt="Producto 4" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 4">
+                            <img src="img/Productos/producto4.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 4" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto5.jpg" alt="Producto 5" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 5">
+                            <img src="img/Productos/producto5.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 5" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto6.jpg" alt="Producto 6" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 6">
+                            <img src="img/Productos/producto6.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 6" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto7.jpg" alt="Producto 7" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 7">
+                            <img src="img/Productos/producto7.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 7" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                     <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto8.jpg" alt="Producto 8" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto9.jpg" alt="Producto 9" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto10.jpg" alt="Producto 10" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto11.jpg" alt="Producto 11" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto12.jpg" alt="Producto 12" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto13.jpg" alt="Producto 13" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <!-- Duplicar las primeras 3 imágenes para el efecto infinito -->
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto1.jpg" alt="Producto 1" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto2.jpg" alt="Producto 2" onclick="ampliarImagen(this)">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link">
-                            <img src="img/Productos/producto3.jpg" alt="Producto 3" onclick="ampliarImagen(this)">
+                        <a href="{{ route('reto-30dias') }}#productos" class="carousel-link" aria-label="Ver producto 8">
+                            <img src="img/Productos/producto8.jpg" alt="Suplemento deportivo GORILLA TEAM - Producto 8" onclick="ampliarImagen(this)">
                         </a>
                     </div>
                 </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Producto anterior">&#10094;</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Siguiente producto">&#10095;</button>
             </div>
             <!-- Botón para ir a productos -->
             <div class="galeria-productos-btn">
@@ -487,286 +462,103 @@
             </div>
         </div>
     </section>
-    
-    <!-- Modal para ampliar imágenes -->
-    <div id="modal-imagen" class="modal-imagen">
-        <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
-        <img id="imagen-ampliada" class="imagen-ampliada">
-    </div>
-    
+
     <!-- SECCION EQUIPO -->
-    <section class="equipo" id="equipo">
-        <div class="contenido-seccion">
-            <div class="contenedor-titulo">
-                <div class="numero">
-                    05
-                </div>
+    <section class="equipo" id="equipo" role="region" aria-labelledby="equipo-title">
+        <div class="contenedor-titulo">
+            <div class="numero">
+                05
+            </div>
+            <div class="info">
+                <span class="frase">CONOCE A LOS LÍDERES</span>
+                <h2 id="equipo-title">EQUIPO</h2>
+            </div>
+        </div>
+        <div class="fila">
+            <div class="col">
+                <img src="img/equipo1.jpg" alt="Miembro del equipo GORILLA TEAM">
                 <div class="info">
-                    <span class="frase">CONVIÉRTETE EN LEYENDA</span>
-                    <h2>VANGUARDIA</h2>
+                    <h3>Líder de Resistencia</h3>
+                    <p>Especialista en transformación física y mental</p>
+                    <a href="#" aria-label="Perfil en Facebook"><i class="material-icons-sharp">facebook</i></a>
+                    <a href="#" aria-label="Perfil en Instagram"><i class="material-icons-sharp">camera_alt</i></a>
                 </div>
             </div>
-            <div class="fila">
-                <div class="col">
-                    <img src="img/e1.png" alt="">
-                    <div class="info">
-                        <h2>MARCOS</h2>
-                        <p>Fitness - Pilates - Yoga</p>
-                        <a href="#">
-                            <i class="material-icons-sharp">favorite</i> 
-                        </a>
-                        <a href="#">
-                            <i class="material-icons-sharp"> fitness_center </i>
-                        </a>
-                    </div>
+            <div class="col">
+                <img src="img/equipo2.jpg" alt="Miembro del equipo GORILLA TEAM">
+                <div class="info">
+                    <h3>Estratega Nutricional</h3>
+                    <p>Experto en suplementación deportiva</p>
+                    <a href="#" aria-label="Perfil en Facebook"><i class="material-icons-sharp">facebook</i></a>
+                    <a href="#" aria-label="Perfil en Instagram"><i class="material-icons-sharp">camera_alt</i></a>
                 </div>
-                <div class="col">
-                    <img src="img/e2.png" alt="">
-                    <div class="info">
-                        <h2>PATRICIA</h2>
-                        <p>Fitness - Pilates - Yoga</p>
-                        <a href="#">
-                            <i class="material-icons-sharp">favorite</i> 
-                        </a>
-                        <a href="#">
-                            <i class="material-icons-sharp"> fitness_center </i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <img src="img/e3.png" alt="">
-                    <div class="info">
-                        <h2>JUAN</h2>
-                        <p>Fitness - Pilates - Yoga</p>
-                        <a href="#">
-                            <i class="material-icons-sharp">favorite</i> 
-                        </a>
-                        <a href="#">
-                            <i class="material-icons-sharp"> pool </i>
-                        </a>
-                    </div>
+            </div>
+            <div class="col">
+                <img src="img/equipo3.jpg" alt="Miembro del equipo GORILLA TEAM">
+                <div class="info">
+                    <h3>Comandante de Entrenamiento</h3>
+                    <p>Especialista en rendimiento atlético</p>
+                    <a href="#" aria-label="Perfil en Facebook"><i class="material-icons-sharp">facebook</i></a>
+                    <a href="#" aria-label="Perfil en Instagram"><i class="material-icons-sharp">camera_alt</i></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECCION CONTACTO -->
-    <section class="contacto" id="contacto">
+    <section class="contacto" id="contacto" role="region" aria-labelledby="contacto-title">
         <div class="contenido-seccion">
             <div class="contenedor-titulo">
                 <div class="numero">
                     06
                 </div>
                 <div class="info">
-                    <span class="frase">Atrévete a desafiar, conquista tu meta</span>
-                    <h2>CONTACTO</h2>
+                    <span class="frase">ÚNETE A LA RESISTENCIA</span>
+                    <h2 id="contacto-title">CONTACTO</h2>
                 </div>
             </div>
-            <form action="{{ route('leads.store') }}" method="POST" id="contact-form">
+            <form action="#" method="POST" aria-label="Formulario de contacto">
                 @csrf
-                <input type="hidden" name="source" value="contact_form">
                 <div class="fila">
                     <div class="col">
-                        <input type="email" name="email" placeholder="Ingrese Email" required>
+                        <input type="text" name="nombre" placeholder="Nombre completo" required aria-required="true" aria-label="Nombre completo">
                     </div>
                     <div class="col">
-                        <input type="text" name="name" placeholder="Ingrese Nombre" required>
+                        <input type="email" name="email" placeholder="Correo electrónico" required aria-required="true" aria-label="Correo electrónico">
                     </div>
                 </div>
-                <div class="fila">
-                    <div class="col">
-                        <input type="tel" name="phone" placeholder="Ingrese Teléfono (opcional)">
-                    </div>
-                </div>
-                <div class="mensaje">
-                    <textarea name="message" id="" cols="30" rows="10" placeholder="Ingresa el Mensaje"></textarea>
-                    <button type="submit">Enviar Mensaje</button>
-                </div>
+                <textarea name="mensaje" placeholder="Tu mensaje" required aria-required="true" aria-label="Mensaje"></textarea>
+                <button type="submit">ENVIAR MENSAJE</button>
             </form>
             <div class="fila-datos">
                 <div class="col">
-                    <i class="material-icons-sharp"> location_on </i>
-                    ARMENIA QUINDIO - COLOMBIA
+                    <i class="material-icons-sharp" aria-hidden="true">location_on</i>
+                    <span>Colombia</span>
                 </div>
                 <div class="col">
-                    <i class="material-icons-sharp"> phone </i>
-                    304 - 589 5681
+                    <i class="material-icons-sharp" aria-hidden="true">phone</i>
+                    <span>+57 300 123 4567</span>
                 </div>
                 <div class="col">
-                    <i class="material-icons-sharp"> schedule </i>
-                    Lunes a Sábado, 8:00h - 24:00h
+                    <i class="material-icons-sharp" aria-hidden="true">email</i>
+                    <span>info@gorillateam.com</span>
                 </div>
             </div>
         </div>
-
     </section>
 
-    <footer>
-        <div class="info">
-            <p>2025 - <span class="txtRojo">ONE DMENTE</span> Todos los derechos reservados</p>
-            <div class="redes">
-                <a href="https://www.facebook.com/GorillaMasters"><i class="material-icons-sharp">facebook</i></a>
-                
-            </div>
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2025 GORILLA TEAM. Todos los derechos reservados. | <a href="#" aria-label="Política de privacidad">Política de Privacidad</a> | <a href="#" aria-label="Términos y condiciones">Términos y Condiciones</a></p>
         </div>
     </footer>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/reto.js') }}"></script>
+
+@endsection
+
+@push('scripts')
+    <!-- Scripts específicos de la página -->
+    <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
-    <script src="{{ asset('js/debug-cart.js') }}"></script>
-    <script>
-        function closeModal() {
-            document.getElementById('errorModal').style.display = 'none';
-        }
-    </script>
-    <script>
-        // Define the route for the reto page
-        window.retoRoute = "{{ route('reto-30dias') }}";
-    </script>
     <script src="{{ asset('js/carousel.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.querySelector('.carousel-track');
-            const slides = document.querySelectorAll('.carousel-slide');
-            let currentIndex = 0;
-            const slideWidth = 100 / 3; // Porque mostramos 3 slides a la vez
-
-            function nextSlide() {
-                currentIndex++;
-                if (currentIndex >= slides.length - 3) {
-                    // Cuando llegamos al final, volvemos al principio suavemente
-                    setTimeout(() => {
-                        track.style.transition = 'none';
-                        currentIndex = 0;
-                        updateSlidePosition();
-                        setTimeout(() => {
-                            track.style.transition = 'transform 0.5s ease-in-out';
-                        }, 50);
-                    }, 500);
-                }
-                updateSlidePosition();
-            }
-
-            function updateSlidePosition() {
-                track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
-            }
-
-            // Auto slide cada 3 segundos
-            setInterval(nextSlide, 3000);
-
-            // Manejar clicks en las imágenes
-            slides.forEach(slide => {
-                slide.querySelector('img').addEventListener('click', function(e) {
-                    e.preventDefault(); // Prevenir el comportamiento por defecto
-                    ampliarImagen(this); // Mantener la funcionalidad de ampliar
-                    setTimeout(() => {
-                        window.location.href = '{{ route("reto-30dias") }}#productos';
-                    }, 500); // Redirigir después de medio segundo
-                });
-            });
-
-            // Funcionalidad mejorada para el botón flotante
-            const floatingBtn = document.querySelector('.floating-products-btn');
-            const galeriaSection = document.querySelector('#galeria');
-            
-            // Función para verificar si el usuario está en la sección de galería
-            function checkGaleriaVisibility() {
-                if (galeriaSection && floatingBtn) {
-                    const rect = galeriaSection.getBoundingClientRect();
-                    const isGaleriaVisible = rect.top < window.innerHeight && rect.bottom > 0;
-                    
-                    // Reducir la opacidad del botón flotante cuando la galería esté visible
-                    if (isGaleriaVisible) {
-                        floatingBtn.style.opacity = '0.6';
-                    } else {
-                        floatingBtn.style.opacity = '1';
-                    }
-                }
-            }
-
-            // Verificar visibilidad al hacer scroll
-            window.addEventListener('scroll', checkGaleriaVisibility);
-            checkGaleriaVisibility(); // Verificar al cargar la página
-        });
-
-        // Funciones para el formulario de inscripción
-        function abrirFormulario() {
-            document.getElementById('overlay-formulario').style.display = 'flex';
-        }
-
-        function cerrarFormulario() {
-            document.getElementById('overlay-formulario').style.display = 'none';
-        }
-
-        // Aseguramos que el formulario se envíe correctamente
-        document.addEventListener('DOMContentLoaded', function() {
-            const formulario = document.getElementById('formulario-inscripcion');
-            if (formulario) {
-                // Guardamos los datos en localStorage antes de enviar el formulario
-                formulario.addEventListener('submit', function() {
-                    const formData = new FormData(formulario);
-                    const userData = {};
-                    
-                    for (let [key, value] of formData.entries()) {
-                        userData[key] = value;
-                    }
-                    
-                    localStorage.setItem('userData', JSON.stringify(userData));
-                    // El formulario se enviará normalmente a la ruta definida en el atributo action
-                });
-            }
-
-            // Manejar formulario de contacto con AJAX
-            const contactForm = document.getElementById('contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const formData = new FormData(contactForm);
-                    const submitButton = contactForm.querySelector('button[type="submit"]');
-                    const originalText = submitButton.textContent;
-                    
-                    // Cambiar texto del botón mientras se envía
-                    submitButton.textContent = 'Enviando...';
-                    submitButton.disabled = true;
-                    
-                    fetch('{{ route("leads.store") }}', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || document.querySelector('input[name="_token"]').value
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Mostrar mensaje de éxito
-                            alert(data.message);
-                            contactForm.reset();
-                        } else {
-                            alert('Error al enviar el mensaje. Inténtalo de nuevo.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Error al enviar el mensaje. Inténtalo de nuevo.');
-                    })
-                    .finally(() => {
-                        // Restaurar botón
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                    });
-                });
-            }
-        });
-    </script>
-    
-    <!-- Botón flotante para ver productos -->
-    <div class="floating-products-btn">
-        <a href="{{ route('reto-30dias') }}#productos" class="btn-floating" title="Ver Productos">
-            <i class="material-icons-sharp">shopping_bag</i>
-        </a>
-    </div>
-</body>
-</html>
+@endpush
