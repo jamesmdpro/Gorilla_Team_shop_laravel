@@ -330,31 +330,31 @@
                         <div class="semana">
                             <div class="dia" onclick="mostrarRutina('bajar', 1)">
                                 <h4>DÍA 1</h4>
-                                <p>HIIT + Core</p>
+                                <p><i class="material-icons-sharp">fitness_center</i> HIIT + Core</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('bajar', 2)">
                                 <h4>DÍA 2</h4>
-                                <p>Fuerza Tren Inferior</p>
+                                <p><i class="material-icons-sharp">directions_run</i> Fuerza Tren Inferior</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('bajar', 3)">
                                 <h4>DÍA 3</h4>
-                                <p>Cardio Steady State</p>
+                                <p><i class="material-icons-sharp">favorite</i> Cardio Steady State</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('bajar', 4)">
                                 <h4>DÍA 4</h4>
-                                <p>Fuerza Tren Superior</p>
+                                <p><i class="material-icons-sharp">fitness_center</i> Fuerza Tren Superior</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('bajar', 5)">
                                 <h4>DÍA 5</h4>
-                                <p>Circuito Metabólico</p>
+                                <p><i class="material-icons-sharp">flash_on</i> Circuito Metabólico</p>
                             </div>
                             <div class="dia descanso" onclick="mostrarRutina('bajar', 6)">
                                 <h4>DÍA 6</h4>
-                                <p>Recuperación Activa</p>
+                                <p><i class="material-icons-sharp">self_improvement</i> Recuperación Activa</p>
                             </div>
                             <div class="dia descanso" onclick="mostrarRutina('bajar', 7)">
                                 <h4>DÍA 7</h4>
-                                <p>Descanso Total</p>
+                                <p><i class="material-icons-sharp">hotel</i> Descanso Total</p>
                             </div>
                         </div>
                     </div>
@@ -368,31 +368,31 @@
                         <div class="semana">
                             <div class="dia" onclick="mostrarRutina('aumentar', 1)">
                                 <h4>DÍA 1</h4>
-                                <p>Pecho y Tríceps</p>
+                                <p><i class="material-icons-sharp">fitness_center</i> Pecho y Tríceps</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('aumentar', 2)">
                                 <h4>DÍA 2</h4>
-                                <p>Espalda y Bíceps</p>
+                                <p><i class="material-icons-sharp">fitness_center</i> Espalda y Bíceps</p>
                             </div>
                             <div class="dia descanso" onclick="mostrarRutina('aumentar', 3)">
                                 <h4>DÍA 3</h4>
-                                <p>Descanso o Cardio Suave</p>
+                                <p><i class="material-icons-sharp">directions_walk</i> Descanso o Cardio Suave</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('aumentar', 4)">
                                 <h4>DÍA 4</h4>
-                                <p>Piernas y Glúteos</p>
+                                <p><i class="material-icons-sharp">fitness_center</i> Piernas y Glúteos</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('aumentar', 5)">
                                 <h4>DÍA 5</h4>
-                                <p>Hombros y Abdomen</p>
+                                <p><i class="material-icons-sharp">fitness_center</i> Hombros y Abdomen</p>
                             </div>
                             <div class="dia" onclick="mostrarRutina('aumentar', 6)">
                                 <h4>DÍA 6</h4>
-                                <p>Entrenamiento Compuesto</p>
+                                <p><i class="material-icons-sharp">flash_on</i> Entrenamiento Compuesto</p>
                             </div>
                             <div class="dia descanso" onclick="mostrarRutina('aumentar', 7)">
                                 <h4>DÍA 7</h4>
-                                <p>Descanso Total</p>
+                                <p><i class="material-icons-sharp">hotel</i> Descanso Total</p>
                             </div>
                         </div>
                     </div>
@@ -422,7 +422,7 @@
                 <div id="nutricion-bajar" class="tab-content active">
                     <div class="plan-nutricion">
                         <div class="nutricion-img">
-                            <img src="img/resistencia.png" alt="Plan nutricional pérdida de peso">
+                            <img src="img/principios/bajarPeso.jpg" alt="Plan nutricional pérdida de peso">
                         </div>
                         <div class="nutricion-info">
                             <h3>PRINCIPIOS NUTRICIONALES PARA <span class="txtRojo">PÉRDIDA DE PESO</span></h3>
@@ -442,7 +442,7 @@
                 <div id="nutricion-aumentar" class="tab-content">
                     <div class="plan-nutricion">
                         <div class="nutricion-img">
-                            <img src="img/resistencia.png" alt="Plan nutricional ganancia muscular">
+                            <img src="img/principios/aumento.jpg" alt="Plan nutricional ganancia muscular">
                         </div>
                         <div class="nutricion-info">
                             <h3>PRINCIPIOS NUTRICIONALES PARA <span class="txtRojo">GANANCIA MUSCULAR</span></h3>
@@ -454,7 +454,7 @@
                                 <li><i class="material-icons-sharp">restaurant</i> <strong>Hidratación:</strong> Mínimo 3-4 litros de agua diarios</li>
                                 <li><i class="material-icons-sharp">restaurant</i> <strong>Timing nutricional:</strong> 5-6 comidas distribuidas durante el día</li>
                             </ul>
-                            <button class="btn-plan" onclick="descargarPlan('aumentar')">DESCARGAR PLAN COMPLETO</button>
+                            {{-- <button class="btn-plan" onclick="descargarPlan('aumentar')">DESCARGAR PLAN COMPLETO</button> --}}
                         </div>
                     </div>
                 </div>
@@ -474,7 +474,7 @@
             <div class="testimonios-grid">
                 <div class="testimonio-card">
                     <div class="testimonio-img">
-                        <img src="img/resistencia.png" alt="Testimonio 1">
+                        <img src="img/resenas/carlos.jpg" alt="Testimonio 1">
                     </div>
                     <div class="testimonio-info">
                         <h3>CARLOS M.</h3>
@@ -485,7 +485,7 @@
                 
                 <div class="testimonio-card">
                     <div class="testimonio-img">
-                        <img src="img/resistencia.png" alt="Testimonio 2">
+                        <img src="img/resenas/laura.jpg" alt="Testimonio 2">
                     </div>
                     <div class="testimonio-info">
                         <h3>LAURA S.</h3>
@@ -496,7 +496,7 @@
                 
                 <div class="testimonio-card">
                     <div class="testimonio-img">
-                        <img src="img/resistencia.png" alt="Testimonio 3">
+                        <img src="img/resenas/miguel.jpg" alt="Testimonio 3">
                     </div>
                     <div class="testimonio-info">
                         <h3>MIGUEL A.</h3>
@@ -517,11 +517,11 @@
                 <div class="soporte-contacto">
                     <div class="contacto-item">
                         <i class="material-icons-sharp">phone</i>
-                        <p>304 - 120 7676</p>
+                        <p>304 - 589 5681</p>
                     </div>
                     <div class="contacto-item">
                         <i class="material-icons-sharp">email</i>
-                        <p>soporte@gorillateam.com</p>
+                        <p>gorillateam.global@gmail.com</p>
                     </div>
                     <div class="contacto-item">
                         <i class="material-icons-sharp">chat</i>
@@ -535,9 +535,12 @@
 
     <footer>
         <div class="info">
-            <p>2023 - <span class="txtRojo">GORILLA TEAM</span> Todos los derechos reservados</p>
+            <p>2025 - <span class="txtRojo">ONE DMENTE</span> Todos los derechos reservados</p>
             <div class="redes">
                 <a href="#">
+                    <a href="https://www.facebook.com/GorillaMasters"><i class="material-icons-sharp">facebook</i></a>
+                </a>
+                {{-- <a href="#">
                     <i class="material-icons-sharp"> rocket_launch </i>
                 </a>
                 <a href="#">
@@ -545,10 +548,7 @@
                 </a>
                 <a href="#">
                     <i class="material-icons-sharp"> rocket_launch </i>
-                </a>
-                <a href="#">
-                    <i class="material-icons-sharp"> rocket_launch </i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </footer>
