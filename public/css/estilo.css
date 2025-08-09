@@ -67,7 +67,7 @@
 
 .carousel-slide img {
     width: 100%;
-    height: 300px;
+    height: 220px; /* Reducido de 300px a 220px para desktop */
     object-fit: cover;
     border-radius: 10px;
     transition: transform 0.3s ease;
@@ -137,6 +137,15 @@
 
     .carousel-btn.next {
         right: 5px;
+    }
+}
+
+/* Estilos para pantallas muy grandes */
+@media screen and (min-width: 1400px) {
+    .carousel-slide img {
+        height: 240px; /* Ligeramente más grande para pantallas muy grandes */
+        max-width: 350px; /* Limitar el ancho máximo */
+        margin: 0 auto; /* Centrar la imagen */
     }
 }
 
@@ -1007,6 +1016,31 @@ footer .info a{
 /* *********** */
 /* RESPONSIVE */
 /* *********** */
+/* Media query para tablets */
+@media only screen and (min-width: 769px) and (max-width: 900px) {
+    .servicios .info-servicios table {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .servicios .info-servicios table tr {
+        display: contents;
+    }
+
+    .servicios .info-servicios table td {
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .servicios .info-servicios table td:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+}
+
 @media only screen and (max-width: 900px) {
     header nav{
         position: initial;
@@ -1019,6 +1053,54 @@ footer .info a{
     .nav-responsive{
         display: block;
     }
+
+    /* Responsive para tabla de servicios */
+    .servicios .info-servicios {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .servicios .info-servicios table {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        position: relative;
+        bottom: 50px;
+        border-collapse: initial;
+    }
+
+    .servicios .info-servicios table tr {
+        display: contents;
+    }
+
+    .servicios .info-servicios table td {
+        display: block;
+        width: 100%;
+        margin-bottom: 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border: none;
+        background: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .servicios .info-servicios table td:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Estilos responsive para el título de inicio */
+    .inicio .info h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
+    .inicio .info h2 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
     nav.responsive{
         display: flex;
         flex-direction: column;
@@ -1108,12 +1190,12 @@ footer .info a{
     footer .info p{
         margin-bottom: 10px;
     }
-    
+
     /* Responsive para formulario pop-up */
     .popup-formulario {
         width: 95%;
     }
-    
+
     .form-fila {
         flex-direction: column;
         gap: 15px;
@@ -1191,11 +1273,115 @@ footer .info a{
         margin: 80px auto;
         max-width: 95%;
     }
-    
+
     .cerrar-modal {
         top: 15px;
         right: 20px;
         font-size: 35px;
+    }
+
+    /* Mejoras adicionales para la tabla de servicios en móviles */
+    .servicios .info-servicios table {
+        bottom: 30px;
+    }
+
+    .servicios .info-servicios table td {
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .servicios .info-servicios table td i {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .servicios .info-servicios h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .servicios .info-servicios p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* Título de inicio aún más pequeño para móviles */
+    .inicio .info h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
+
+    .inicio .info h2 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .inicio .info p {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+}
+
+/* Media query para pantallas muy pequeñas (móviles pequeños) */
+@media only screen and (max-width: 480px) {
+    /* Título de inicio para móviles muy pequeños */
+    .inicio .info h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+        padding: 0 10px;
+    }
+
+    .inicio .info h2 {
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .inicio .info p {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        margin: 15px 10px;
+    }
+
+    /* Tabla de servicios para móviles muy pequeños */
+    .servicios .info-servicios {
+        padding: 0 10px;
+    }
+
+    .servicios .info-servicios table {
+        bottom: 20px;
+    }
+
+    .servicios .info-servicios table td {
+        padding: 15px 10px;
+        margin-bottom: 15px;
+    }
+
+    .servicios .info-servicios table td i {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .servicios .info-servicios h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .servicios .info-servicios p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    /* Carrusel para móviles muy pequeños */
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .carousel-slide img {
+        height: 180px;
     }
 }
 /* Shopping Cart Styles */

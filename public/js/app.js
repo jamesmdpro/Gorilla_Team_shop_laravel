@@ -73,19 +73,20 @@ function cerrarFormulario() {
 
 // Esta función ya no se usa ya que el formulario ahora se envía directamente al backend
 // El formulario ahora usa el método POST para enviar los datos al controlador
-function enviarFormulario(event) {
+function enviarFormulario() {
+
     // No prevenimos el evento por defecto para permitir que el formulario se envíe normalmente
     // Obtener los datos del formulario
     const formData = new FormData(document.getElementById('formulario-inscripcion'));
     const userData = {};
-    
+
     for (let [key, value] of formData.entries()) {
         userData[key] = value;
     }
-    
+
     // Guardar los datos en localStorage para usarlos en la página del reto
     localStorage.setItem('userData', JSON.stringify(userData));
-    
+
     // El formulario se enviará a la ruta definida en el atributo action
     // y el controlador se encargará de la redirección
 }
