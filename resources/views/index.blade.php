@@ -476,7 +476,7 @@
         </div>
         <div class="fila">
             <div class="col">
-                <img src="img/equipo1.jpg" alt="Miembro del equipo GORILLA TEAM">
+                <img src="img/e1.png" alt="Miembro del equipo GORILLA TEAM">
                 <div class="info">
                     <h3>Líder de Resistencia</h3>
                     <p>Especialista en transformación física y mental</p>
@@ -485,7 +485,7 @@
                 </div>
             </div>
             <div class="col">
-                <img src="img/equipo2.jpg" alt="Miembro del equipo GORILLA TEAM">
+                <img src="img/e2.png" alt="Miembro del equipo GORILLA TEAM">
                 <div class="info">
                     <h3>Estratega Nutricional</h3>
                     <p>Experto en suplementación deportiva</p>
@@ -494,7 +494,7 @@
                 </div>
             </div>
             <div class="col">
-                <img src="img/equipo3.jpg" alt="Miembro del equipo GORILLA TEAM">
+                <img src="img/e3.png" alt="Miembro del equipo GORILLA TEAM">
                 <div class="info">
                     <h3>Comandante de Entrenamiento</h3>
                     <p>Especialista en rendimiento atlético</p>
@@ -558,7 +558,7 @@
 
 @push('scripts')
     <!-- Scripts específicos de la página -->
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/carousel.js') }}"></script>
 @endpush

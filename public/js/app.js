@@ -18,7 +18,7 @@ function seleccionar(){
 // Contador de tiempo hasta el 30/03/2025
 document.addEventListener('DOMContentLoaded', function() {
     // Fecha objetivo: 30 de marzo de 2025
-    const targetDate = new Date('2025-07-30T00:00:00').getTime();
+    const targetDate = new Date('2025-08-30T00:00:00').getTime();
     
     // Actualizar el contador cada segundo
     const countdown = setInterval(function() {

@@ -8,15 +8,61 @@
     padding: 20px 0;
 }
 
+/* Botón de productos de la galería */
+.galeria-productos-btn {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-productos {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff1133, #e60e2b);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 17, 51, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-productos:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 17, 51, 0.4);
+    background: linear-gradient(135deg, #e60e2b, #cc0c26);
+}
+
+.btn-productos i {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .btn-productos {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
+    .btn-productos i {
+        font-size: 18px;
+    }
+}
+
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 100%;
 }
 
 .carousel-slide {
     flex: 0 0 33.333%;
     padding: 0 10px;
     box-sizing: border-box;
+    min-width: 0; /* Previene overflow en flex items */
 }
 
 .carousel-slide img {
@@ -25,6 +71,7 @@
     object-fit: cover;
     border-radius: 10px;
     transition: transform 0.3s ease;
+    display: block;
 }
 
 .carousel-slide img:hover {
@@ -35,6 +82,88 @@
     text-decoration: none;
     color: inherit;
     display: block;
+}
+
+/* Botones de navegación del carrusel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 17, 51, 0.8);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 17, 51, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+.carousel-btn:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Responsive para botones del carrusel */
+@media screen and (max-width: 768px) {
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .carousel-btn.prev {
+        left: 5px;
+    }
+
+    .carousel-btn.next {
+        right: 5px;
+    }
+}
+
+/* Responsive para el carrusel */
+@media screen and (max-width: 1024px) {
+    .carousel-slide {
+        flex: 0 0 50%;
+    }
+
+    .carousel-slide img {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel-slide {
+        flex: 0 0 100%;
+        padding: 0 5px;
+    }
+
+    .carousel-slide img {
+        height: 200px;
+    }
+
+    .carousel-container {
+        padding: 10px 0;
+    }
 }
 
 /* Estilos para el contador de tiempo */
@@ -130,6 +259,15 @@ body{
     transform: translate(-50%,-50%);
     text-align: center;
 }
+
+.inicio .info h1{
+    font-size: 4rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
 .inicio .info h2{
     font-size: 4rem;
     letter-spacing: 3px;
