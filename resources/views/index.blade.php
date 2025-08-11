@@ -537,11 +537,11 @@
                 </div>
                 <div class="col">
                     <i class="material-icons-sharp" aria-hidden="true">phone</i>
-                    <span>+57 300 123 4567</span>
+                    <span>+57  304 5895681</span>
                 </div>
                 <div class="col">
                     <i class="material-icons-sharp" aria-hidden="true">email</i>
-                    <span>info@gorillateam.com</span>
+                    <span>gorillateam.global@gmail.com</span>
                 </div>
             </div>
         </div>

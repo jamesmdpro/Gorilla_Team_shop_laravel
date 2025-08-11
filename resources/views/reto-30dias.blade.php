@@ -523,12 +523,12 @@
                         <i class="material-icons-sharp">email</i>
                         <p>gorillateam.global@gmail.com</p>
                     </div>
-                    <div class="contacto-item">
+                    {{-- <div class="contacto-item">
                         <i class="material-icons-sharp">chat</i>
                         <p>Chat en vivo: Lun-Sáb 8:00-20:00</p>
-                    </div>
+                    </div> --}}
                 </div>
-                <button class="btn-soporte" onclick="abrirChat()">CHAT CON UN EXPERTO</button>
+                {{-- <button class="btn-soporte" onclick="abrirChat()">CHAT CON UN EXPERTO</button> --}}
             </div>
         </div>
     </section>
